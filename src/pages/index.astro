@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/navigation/Drawer-Nav.astro';
+import SideNav from '../components/navigation/Side-Nav.astro';
+import { Icon } from 'astro-icon/components';
+import Pages from '../../db/pages.json';
+const local = Astro.locals;
+const title = (Astro.locals as { title?: string }).title || 'Cannot find title';
+const tagline = (Astro.locals as { tagline?: string }).tagline || 'Cannot find tagline';
+const session = (Astro.locals as { sessionStore?: string }).sessionStore || 'Cannot find sessionStore';
+import Social from '../../db/social.json';
+//console.log('_____________INDEX PAGE_____________');
+const searchURL = new URL(Astro.request.url);
+const params = new URLSearchParams(searchURL.search);
+let page = null;
+if (params.get('page') !== undefined) {
+	page = params.get('page');
+}
+const pageLoader = (page: string) => {
+	const pageData = (Pages.pages as { id: number; name: string; url: string; title: string; description: string; keywords: string; parent: string; hasChildren: boolean; icon: string; }[]).filter((item) => item.name === page);
+	return pageData[0];
+};
+const { description, keywords, name, id, url } = pageLoader(page || 'home');
+console.log({page: page});
+const hx_get = page ? `/content/${page}` : `/content/home`;
+let hx_url = `/`;
+if(
+	page && page != 'home'
+){
+	hx_url = `/${page}`;
+}
+---
+
+<Layout title="Welcome to City Packz" theme="charmander">
+	<section id="pageWraper" class="drawer">
+		<input id="sideNav" type="checkbox" class="drawer-toggle" />
+		<Nav title="City Packz" background="bg-base-200" pageList={Pages} social={Social}>
+			<main
+				hx-get={hx_get}
+				hx-push-url={hx_url}
+				hx-trigger="load"
+				hx-swap="innerHTML"
+				hx-select="#content"
+				>
+				<h2>{description}</h2>
+				<p>{keywords}</p>
+				<p>{name}</p>
+				<p>{id}</p>
+				<p>{url}</p>
+			</main>
+		</Nav>
+		<SideNav title="City Packz" background="bg-base-100" pageList={Pages} social={Social} />
+	</section>
+	
+	
+</Layout>
+
+<!--
+<style>
+	main {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+		padding: 1rem;
+	}
+</style>
+-->

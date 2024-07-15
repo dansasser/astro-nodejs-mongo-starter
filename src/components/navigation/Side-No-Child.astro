@@ -1,0 +1,23 @@
+---
+     interface Props {
+         title: string;
+         url?: string;
+         icon: string;
+         name?: string;
+    };
+
+     const { title, url, icon, name } = Astro.props;
+
+---
+
+
+    
+<li>
+     <a href={url} class="hover:bg-gray-100 text-gray-900 dark:text-white dark:hover:bg-gray-700">
+        <i
+           class={icon}
+        ></i>
+        <span
+           class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{title}</span>
+     </a>
+  </li>

@@ -1,0 +1,45 @@
+{
+  "name": "http",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "dev:start": "concurrently \"astro build && npm run start-server\"",
+    "devtunnel": "devtunnel host",
+    "start-server": "node ./server.mjs",
+    "start": "concurrently \"astro build && npm run start-server\" \"wait-on -c waiton.json  && npm run devtunnel\"",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/alpinejs": "^0.4.0",
+    "@astrojs/check": "^0.8.0",
+    "@astrojs/node": "^8.3.2",
+    "@astrojs/react": "^3.6.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@mdi/js": "^7.4.47",
+    "@types/alpinejs": "^3.13.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "alpinejs": "^3.14.1",
+    "astro": "^4.11.5",
+    "astro-icon": "^1.1.0",
+    "concurrently": "^8.2.2",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "flowbite": "^2.4.1",
+    "iconify-icon": "^2.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "wait-on": "^7.2.0"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.67",
+    "daisyui": "^4.12.10"
+  }
+}

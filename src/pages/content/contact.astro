@@ -1,0 +1,21 @@
+---
+const referer: string = Object.fromEntries(
+   Astro.request.headers,
+)['referer'];
+const host: string = Astro.url.host;
+if (referer === undefined) {
+   return Astro.redirect('/');
+} else {
+   if (!referer.includes(host)) {
+      return Astro.redirect('/');
+   }
+}
+const page = Astro.url.pathname.replace('/content/', '');
+import 'dotenv/config';
+
+
+---
+<section id="content">
+
+   <h2>Hello this is the {page} page.</h2>
+</section>
