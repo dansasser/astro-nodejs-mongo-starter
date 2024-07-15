@@ -16,6 +16,12 @@ Inside of your Astro project, you'll see the following folders and files:
 │   └── favicon.svg
 ├── src/
 │   ├── components/
+│   │   ├── navigation
+│   │   |   └── Drawer-Nav.astro
+│   │   |   └── Side-Nav.astro
+│   │   |   └── Side--Child.astro
+│   │   |   └── Side-With-Child.astro
+│   │   |   └── Side-No-Child.astro
 │   │   └── Card.astro
 │   ├── layouts/
 │   │   └── Layout.astro
